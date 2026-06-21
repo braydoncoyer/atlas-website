@@ -56,7 +56,7 @@ export default async function Home() {
 
             {/* Right: subhead + form */}
             <div className="flex flex-col gap-5">
-              <p className="text-pretty text-base leading-snug sm:text-lg text-slate-500">
+              <p className="max-w-xl text-pretty text-base leading-snug sm:text-lg text-slate-500">
                 Atlas is a local-first notes app designed around writing. Every
                 note is a plain Markdown file you own, while Atlas quietly
                 surfaces related ideas and forgotten connections as you write.

@@ -187,7 +187,7 @@ export default function ProductShot() {
             <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
             <span className="h-3 w-3 rounded-full bg-[#28c840]" />
           </div>
-          <div className="px-6 pt-4 sm:px-10 lg:px-14 lg:pt-12 xl:px-20">
+          <div className="px-6 pt-4 sm:px-10 lg:pl-24 lg:pr-14 lg:pt-12 xl:pl-32 xl:pr-20">
             <h3 className="text-[26px] font-semibold tracking-tight text-foreground">
               Start Here
             </h3>

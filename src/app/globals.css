@@ -38,8 +38,12 @@
   }
 }
 
-* {
-  border-color: var(--border);
+/* In @layer base so `border-<color>` utilities still override this default
+ * (unlayered rules beat layered utilities in Tailwind v4). */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
 }
 
 body {

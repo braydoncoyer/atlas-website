@@ -25,14 +25,30 @@ function getJoinedSnapshot() {
   }
 }
 
+// Subtle on-brand blue/cyan variations so the avatars read as distinct people
+// without straying from the accent palette.
+const AVATAR_GRADIENTS = [
+  "from-[#0088ff] to-[#5fb8ff]",
+  "from-[#0a72d6] to-[#49a6ff]",
+  "from-[#2a9bff] to-[#7cc4ff]",
+  "from-[#0098e0] to-[#5ccaf0]",
+  "from-[#1f7ae0] to-[#66b0ff]",
+  "from-[#0b86f2] to-[#54aef7]",
+  "from-[#3aa0ff] to-[#86c9ff]",
+];
+
 function SocialProof({ count }: { count: number }) {
+  // Show one avatar per signup, capped at 7.
+  const avatars = Math.min(count, 7);
   return (
     <div className="flex items-center gap-2 text-xs text-muted">
       <div className="flex -space-x-1.5">
-        {[0, 1, 2].map((i) => (
+        {Array.from({ length: avatars }).map((_, i) => (
           <span
             key={i}
-            className="h-5 w-5 rounded-full border-2 border-background bg-gradient-to-br from-accent/70 to-accent/30"
+            className={`h-5 w-5 rounded-full border-2 border-background bg-gradient-to-br ${
+              AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length]
+            }`}
           />
         ))}
       </div>
