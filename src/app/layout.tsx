@@ -29,6 +29,12 @@ export const metadata: Metadata = {
       "Atlas is a local-first notes app designed around writing. Every note is a plain Markdown file you own, while Atlas quietly surfaces related ideas and forgotten connections as you write. Join the waitlist.",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Atlas — Remember more of what you already know.",
+    description:
+      "Atlas is a local-first notes app designed around writing. Every note is a plain Markdown file you own, while Atlas quietly surfaces related ideas and forgotten connections as you write. Join the waitlist.",
+  },
 };
 
 export default function RootLayout({
