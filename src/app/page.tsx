@@ -4,25 +4,7 @@ import { getWaitlistCount } from "@/lib/waitlist";
 
 function Wordmark() {
   return (
-    <div className="flex items-center gap-2 font-semibold tracking-tight">
-      <span className="grid h-7 w-7 place-items-center rounded-lg bg-foreground text-background">
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true"
-        >
-          <circle
-            cx="8"
-            cy="8"
-            r="6.5"
-            stroke="currentColor"
-            strokeWidth="1.3"
-          />
-          <path d="M8 4.5 9.2 8 8 11.5 6.8 8 8 4.5Z" fill="currentColor" />
-        </svg>
-      </span>
+    <div className="flex items-center gap-2 font-semibold tracking-tight text-accent">
       Atlas
     </div>
   );

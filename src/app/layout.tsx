@@ -20,13 +20,13 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Atlas — Notes you own. Connections you didn't know you had.",
+  title: "Atlas — Remember more of what you already know.",
   description:
-    "A writing-first markdown note app for macOS. Your notes stay plain Markdown files you own, with instant retrieval and discovered connections. Join the waitlist.",
+    "Atlas is a local-first notes app designed around writing. Every note is a plain Markdown file you own, while Atlas quietly surfaces related ideas and forgotten connections as you write. Join the waitlist.",
   openGraph: {
-    title: "Atlas — a writing-first markdown app for macOS",
+    title: "Atlas — Remember more of what you already know.",
     description:
-      "Plain Markdown files you own, a premium editor, instant ⌘K retrieval, and connections you didn't know you had. Join the waitlist.",
+      "Atlas is a local-first notes app designed around writing. Every note is a plain Markdown file you own, while Atlas quietly surfaces related ideas and forgotten connections as you write. Join the waitlist.",
     type: "website",
   },
 };

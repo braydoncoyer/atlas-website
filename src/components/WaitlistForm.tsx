@@ -6,23 +6,6 @@ import { joinWaitlist, type SignupState } from "@/app/actions";
 
 const initialState: SignupState = { status: "idle", message: "" };
 
-function AtlasMark() {
-  return (
-    <span className="grid h-10 w-10 place-items-center rounded-xl bg-foreground text-background">
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-      >
-        <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.3" />
-        <path d="M8 4.5 9.2 8 8 11.5 6.8 8 8 4.5Z" fill="currentColor" />
-      </svg>
-    </span>
-  );
-}
-
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
@@ -74,8 +57,7 @@ function FormView({
 }) {
   return (
     <div>
-      <AtlasMark />
-      <h2 className="mt-4 text-xl font-semibold tracking-tight text-sky-950">
+      <h2 className="text-xl font-semibold tracking-tight text-sky-950">
         Join the waitlist
       </h2>
       <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
