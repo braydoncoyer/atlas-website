@@ -66,11 +66,11 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Product shot — a contained app window, left-aligned to the headline,
-            peeking below the fold */}
+        {/* Product shot — left-aligned to the headline, bleeds off the right
+            edge and clips at the fold */}
         <div className="mt-8 min-h-0 flex-1 overflow-hidden sm:mt-12">
           <div className="mx-auto h-full max-w-7xl px-6">
-            <div className="w-full">
+            <div className="h-[calc(100%+3rem)] w-[120%] max-w-none lg:w-[125%]">
               <ProductShot />
             </div>
           </div>
