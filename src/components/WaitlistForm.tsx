@@ -167,7 +167,9 @@ export default function WaitlistForm({
   }, [state.status, onJoined]);
 
   const justJoined = state.status === "success";
-  const success = justJoined || alreadyJoined;
+  // The server reports this email was already on the list (no count bump).
+  const alreadyOnList = state.status === "already";
+  const success = justJoined || alreadyJoined || alreadyOnList;
 
   return (
     <div
@@ -178,7 +180,7 @@ export default function WaitlistForm({
     >
       <div ref={innerRef}>
         {success ? (
-          <SuccessView returning={alreadyJoined && !justJoined} />
+          <SuccessView returning={alreadyOnList || (alreadyJoined && !justJoined)} />
         ) : (
           <FormView state={state} formAction={formAction} />
         )}

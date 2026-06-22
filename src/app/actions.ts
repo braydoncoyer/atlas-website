@@ -3,7 +3,7 @@
 import { Resend } from "resend";
 
 export type SignupState = {
-  status: "idle" | "success" | "error";
+  status: "idle" | "success" | "already" | "error";
   message: string;
 };
 
@@ -57,14 +57,29 @@ async function processSignup(formData: FormData): Promise<SignupState> {
 
   try {
     const resend = new Resend(apiKey);
+
+    // Surface already-subscribed contacts with a friendly "already on the list"
+    // state. Note: this reveals list membership for a typed email (email
+    // enumeration) — an accepted tradeoff for a low-stakes waitlist. A failed
+    // lookup (e.g. not found / transient error) just falls through to create,
+    // which is idempotent.
+    const existing = await resend.contacts.get({ audienceId, email });
+    if (existing.data) {
+      return { status: "already", message: "You're already on the list." };
+    }
+
     const { error } = await resend.contacts.create({
       email,
       audienceId,
       unsubscribed: false,
     });
 
-    // Treat an already-subscribed contact as success — never leak list membership.
-    if (error && !/already exists/i.test(error.message ?? "")) {
+    // Backstop: if a contact slipped in between the lookup and create, Resend
+    // may report it — treat that as already-on-the-list too.
+    if (error) {
+      if (/already exists/i.test(error.message ?? "")) {
+        return { status: "already", message: "You're already on the list." };
+      }
       console.error("Resend contacts.create failed:", error.message);
       return {
         status: "error",

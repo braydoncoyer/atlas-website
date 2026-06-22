@@ -14,8 +14,8 @@ export default async function Home() {
   const waitlist = await getWaitlistCount();
 
   return (
-    <main className="flex h-[100dvh] flex-col overflow-hidden">
-      <section className="relative flex h-full flex-col">
+    <main className="flex min-h-[100dvh] flex-col overflow-x-clip bg-gradient-to-b from-white via-white to-sky-50/70">
+      <section className="relative flex flex-1 flex-col">
         {/* AI glow — blue, per Atlas brand (purple/pink rejected) */}
         <div
           aria-hidden="true"
@@ -26,7 +26,7 @@ export default async function Home() {
         </div>
 
         {/* Hero */}
-        <div className="mx-auto w-full max-w-7xl px-6 pt-12 sm:pt-20">
+        <div className="mx-auto w-full max-w-7xl shrink-0 px-6 pt-12 sm:pt-20">
           <Wordmark />
           <div className="mt-8 grid items-start gap-5 sm:mt-10 lg:grid-cols-2 lg:gap-24">
             {/* Left: headline */}
@@ -49,10 +49,13 @@ export default async function Home() {
         </div>
 
         {/* Product shot — left-aligned to the headline, bleeds off the right
-            edge and clips at the fold */}
-        <div className="mt-8 min-h-0 flex-1 overflow-hidden sm:mt-12">
+            edge and clips at the fold. The large-screen width is viewport-based
+            (anchored to the content's left edge) so it overruns the right edge
+            on any monitor size instead of stopping short. min-h keeps it visible
+            on short/landscape viewports, where the page scrolls instead. */}
+        <div className="mt-8 flex-1 overflow-hidden min-h-[22rem] sm:mt-12">
           <div className="mx-auto h-full max-w-7xl px-6">
-            <div className="h-[calc(100%+3rem)] w-[120%] max-w-none lg:w-[125%]">
+            <div className="h-[calc(100%+3rem)] w-[120%] max-w-none lg:w-[calc(50vw+744px)]">
               <ProductShot />
             </div>
           </div>

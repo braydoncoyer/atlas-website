@@ -62,6 +62,13 @@ body {
  * ease-out, ~240ms in / ~180ms out (exits a touch faster). Blur stays under 20px.
  */
 .modal {
+  /* Deterministic sizing + centering, independent of the <dialog> UA defaults
+   * (iOS Safari's defaults can let the box exceed the viewport). Unlayered, so
+   * it wins over the Tailwind width utilities. */
+  width: min(100% - 2rem, 24rem);
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  box-sizing: border-box;
   opacity: 0;
   transform: translateY(8px) scale(0.97);
   transition:

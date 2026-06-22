@@ -116,7 +116,7 @@ export default function WaitlistDialog({
       <button
         type="button"
         onClick={open}
-        className="w-fit rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-[background-color,transform] duration-150 ease-out hover:bg-accent-hover active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        className="w-fit rounded-full bg-gradient-to-b from-[#1a93ff] to-accent px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent/25 transition-[filter,transform] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         Be first to try Atlas
       </button>
@@ -130,7 +130,8 @@ export default function WaitlistDialog({
         onClick={(e) => {
           if (e.target === dialogRef.current) close();
         }}
-        className="modal m-auto w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-border bg-background p-0 text-foreground shadow-2xl"
+        // Width/centering live in the `.modal` CSS rule (iOS-safe min() sizing).
+        className="modal rounded-2xl border border-border bg-background p-0 text-foreground shadow-2xl"
       >
         <div className="relative p-7">
           <button
