@@ -129,8 +129,8 @@ export function renderSocialImage() {
               maxWidth: 470,
             }}
           >
-            A writing-first, local-first notes app for macOS. Be the first to
-            write in Atlas.
+            A writing-first, local-first notes app for Mac, iPad, and iPhone. Be
+            the first to write in Atlas.
           </div>
         </div>
 
