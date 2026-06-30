@@ -2,6 +2,9 @@ import ProductShot from "@/components/ProductShot";
 import WaitlistDialog from "@/components/WaitlistDialog";
 import WhatIsAtlas from "@/components/WhatIsAtlas";
 import NearbyNotes from "@/components/NearbyNotes";
+import Regions from "@/components/Regions";
+import FinalCta from "@/components/FinalCta";
+import SiteFooter from "@/components/SiteFooter";
 import { getWaitlistCount } from "@/lib/waitlist";
 
 function Wordmark() {
@@ -73,6 +76,14 @@ export default async function Home() {
 
       {/* How Atlas uses AI — surfaces what you've written, never writes it. */}
       <NearbyNotes />
+
+      {/* Regions — folder-free organisation; a self-maintaining note of links. */}
+      <Regions />
+
+      {/* Closing pitch — one last centered push to join the waitlist. */}
+      <FinalCta waitlist={waitlist} />
+
+      <SiteFooter />
     </main>
   );
 }

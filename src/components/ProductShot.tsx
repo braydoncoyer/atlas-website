@@ -141,7 +141,7 @@ function StartHereNote() {
 
       <div className="mt-7 space-y-6">
         <EditorP>Welcome to Atlas.</EditorP>
-        <EditorP connection="Circadian Systems">
+        <EditorP>
           Atlas is built around a simple idea: your notes should belong to you,
           and they should become more valuable the more you write.
         </EditorP>
@@ -158,7 +158,7 @@ function StartHereNote() {
           It&apos;s fast, native, and designed to stay out of your way. No
           clutter. No unnecessary complexity. Just a clean space to think.
         </EditorP>
-        <EditorP connection="Circadian Rhythm">
+        <EditorP>
           Because Atlas uses Markdown, you can use familiar keyboard shortcuts
           for formatting, or select text to open the formatting bubble.
         </EditorP>
