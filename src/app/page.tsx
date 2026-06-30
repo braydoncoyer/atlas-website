@@ -1,5 +1,7 @@
 import ProductShot from "@/components/ProductShot";
 import WaitlistDialog from "@/components/WaitlistDialog";
+import WhatIsAtlas from "@/components/WhatIsAtlas";
+import NearbyNotes from "@/components/NearbyNotes";
 import { getWaitlistCount } from "@/lib/waitlist";
 
 function Wordmark() {
@@ -64,6 +66,13 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* What Atlas is, in three pillars: writing-first, file ownership, AI
+          that surfaces rather than writes. */}
+      <WhatIsAtlas />
+
+      {/* How Atlas uses AI — surfaces what you've written, never writes it. */}
+      <NearbyNotes />
     </main>
   );
 }
