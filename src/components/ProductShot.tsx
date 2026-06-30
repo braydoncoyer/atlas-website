@@ -4,6 +4,11 @@
 // any size. Mirrors the real app: traffic-light chrome, a Regions sidebar, the
 // live-preview editor, and the faint inline "discovered connection" labels in
 // the right gutter.
+//
+// Parametrized so other sections can reuse the exact same app chrome: pass a
+// different `note` body, highlight a different `activeItem` in the sidebar, and
+// drop an `overlay` (e.g. the Nearby Notes dock) over the editor. Defaults
+// reproduce the original hero shot unchanged.
 
 function MapIcon() {
   return (
@@ -124,9 +129,99 @@ function Check() {
   );
 }
 
-export default function ProductShot() {
+// The default hero note ("Start Here"). Exported shape kept inline so the hero
+// renders identically when no `note` prop is passed.
+function StartHereNote() {
   return (
-    <div className="flex h-full min-h-[560px] flex-col overflow-hidden rounded-xl border border-border bg-background shadow-2xl shadow-black/10 ring-1 ring-black/[0.04]">
+    <>
+      <h3 className="text-[26px] font-semibold tracking-tight text-foreground">
+        Start Here
+      </h3>
+      <div className="mt-3 h-px w-full max-w-[760px] bg-border" />
+
+      <div className="mt-7 space-y-6">
+        <EditorP>Welcome to Atlas.</EditorP>
+        <EditorP connection="Circadian Systems">
+          Atlas is built around a simple idea: your notes should belong to you,
+          and they should become more valuable the more you write.
+        </EditorP>
+        <EditorP>
+          Everything starts with writing. Capture ideas, connect concepts, and
+          let Atlas help you rediscover them later.
+        </EditorP>
+
+        <h4 className="pt-2 text-[19px] font-semibold tracking-tight text-foreground">
+          Start writing
+        </h4>
+        <EditorP>The editor is the heart of Atlas.</EditorP>
+        <EditorP>
+          It&apos;s fast, native, and designed to stay out of your way. No
+          clutter. No unnecessary complexity. Just a clean space to think.
+        </EditorP>
+        <EditorP connection="Circadian Rhythm">
+          Because Atlas uses Markdown, you can use familiar keyboard shortcuts
+          for formatting, or select text to open the formatting bubble.
+        </EditorP>
+
+        <div className="space-y-2.5">
+          <p className="text-[14px] leading-[1.7] text-foreground/85">
+            Try a few things:
+          </p>
+          <div className="flex items-start gap-2.5">
+            <Check />
+            <span className="text-[14px] leading-[1.7] text-foreground/85">
+              Make this sentence bold.
+            </span>
+          </div>
+          <div className="flex items-start gap-2.5">
+            <Check />
+            <span className="text-[14px] leading-[1.7] text-foreground/85">
+              Create a heading below this section.
+            </span>
+          </div>
+        </div>
+
+        <h4 className="pt-2 text-[19px] font-semibold tracking-tight text-foreground">
+          Your notes belong to you
+        </h4>
+        <EditorP>
+          Every note is stored as a plain Markdown file on your machine.
+        </EditorP>
+      </div>
+    </>
+  );
+}
+
+const REGIONS = [
+  "Chronobiology",
+  "Circadian Systems",
+  "Focus",
+  "Light Exposure",
+  "Product",
+  "Sleep",
+];
+
+export default function ProductShot({
+  activeItem = "Start Here",
+  note,
+  overlay,
+  flat = false,
+}: {
+  /** Sidebar item to highlight (a region name or "Start Here"). */
+  activeItem?: string;
+  /** Editor body. Defaults to the hero "Start Here" note. */
+  note?: React.ReactNode;
+  /** Absolutely-positioned layer over the editor (e.g. the Nearby Notes dock). */
+  overlay?: React.ReactNode;
+  /** Drop the shadow + ring (e.g. when the shot fades into the page). */
+  flat?: boolean;
+}) {
+  return (
+    <div
+      className={`flex h-full min-h-[560px] flex-col overflow-hidden rounded-xl border border-border bg-background ${
+        flat ? "" : "shadow-2xl shadow-black/10 ring-1 ring-black/[0.04]"
+      }`}
+    >
       <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-[244px_1fr]">
         {/* Sidebar — hidden on small screens, like toggling it closed in the app */}
         <aside className="hidden flex-col border-r border-border bg-[#f7f7f8] px-3 lg:flex">
@@ -158,15 +253,17 @@ export default function ProductShot() {
             <SidebarItem icon={<GridIcon />} label="All Notes" />
 
             <GroupLabel>Regions</GroupLabel>
-            <SidebarItem icon={<MapIcon />} label="Chronobiology" />
-            <SidebarItem icon={<MapIcon />} label="Circadian Systems" />
-            <SidebarItem icon={<MapIcon />} label="Focus" />
-            <SidebarItem icon={<MapIcon />} label="Light Exposure" />
-            <SidebarItem icon={<MapIcon />} label="Product" />
-            <SidebarItem icon={<MapIcon />} label="Sleep" />
+            {REGIONS.map((region) => (
+              <SidebarItem
+                key={region}
+                icon={<MapIcon />}
+                label={region}
+                active={activeItem === region}
+              />
+            ))}
 
             <GroupLabel>Pinned</GroupLabel>
-            <SidebarItem label="Start Here" active />
+            <SidebarItem label="Start Here" active={activeItem === "Start Here"} />
           </div>
 
           {/* account row */}
@@ -180,7 +277,7 @@ export default function ProductShot() {
         </aside>
 
         {/* Editor */}
-        <div className="min-w-0">
+        <div className="relative min-w-0">
           {/* window chrome — shown here only when the sidebar is hidden (small screens) */}
           <div className="flex items-center gap-2 px-6 pb-1 pt-3.5 lg:hidden">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -188,62 +285,11 @@ export default function ProductShot() {
             <span className="h-3 w-3 rounded-full bg-[#28c840]" />
           </div>
           <div className="px-6 pt-4 sm:px-10 lg:pl-24 lg:pr-14 lg:pt-12 xl:pl-32 xl:pr-20">
-            <h3 className="text-[26px] font-semibold tracking-tight text-foreground">
-              Start Here
-            </h3>
-            <div className="mt-3 h-px w-full max-w-[760px] bg-border" />
-
-          <div className="mt-7 space-y-6">
-            <EditorP>Welcome to Atlas.</EditorP>
-            <EditorP connection="Circadian Systems">
-              Atlas is built around a simple idea: your notes should belong to
-              you, and they should become more valuable the more you write.
-            </EditorP>
-            <EditorP>
-              Everything starts with writing. Capture ideas, connect concepts,
-              and let Atlas help you rediscover them later.
-            </EditorP>
-
-            <h4 className="pt-2 text-[19px] font-semibold tracking-tight text-foreground">
-              Start writing
-            </h4>
-            <EditorP>The editor is the heart of Atlas.</EditorP>
-            <EditorP>
-              It&apos;s fast, native, and designed to stay out of your way. No
-              clutter. No unnecessary complexity. Just a clean space to think.
-            </EditorP>
-            <EditorP connection="Circadian Rhythm">
-              Because Atlas uses Markdown, you can use familiar keyboard
-              shortcuts for formatting, or select text to open the formatting
-              bubble.
-            </EditorP>
-
-            <div className="space-y-2.5">
-              <p className="text-[14px] leading-[1.7] text-foreground/85">
-                Try a few things:
-              </p>
-              <div className="flex items-start gap-2.5">
-                <Check />
-                <span className="text-[14px] leading-[1.7] text-foreground/85">
-                  Make this sentence bold.
-                </span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <Check />
-                <span className="text-[14px] leading-[1.7] text-foreground/85">
-                  Create a heading below this section.
-                </span>
-              </div>
-            </div>
-
-            <h4 className="pt-2 text-[19px] font-semibold tracking-tight text-foreground">
-              Your notes belong to you
-            </h4>
-            <EditorP>
-              Every note is stored as a plain Markdown file on your machine.
-            </EditorP>
-            </div>
+            {note ?? <StartHereNote />}
           </div>
+
+          {/* Optional overlay (positions itself) */}
+          {overlay}
         </div>
       </div>
     </div>
