@@ -218,7 +218,7 @@ export default function ProductShot({
 }) {
   return (
     <div
-      className={`flex h-full min-h-[560px] flex-col overflow-hidden rounded-xl border border-border bg-background ${
+      className={`relative flex h-[26rem] flex-col overflow-hidden rounded-xl border border-border bg-background sm:h-[30rem] lg:h-full lg:min-h-[560px] ${
         flat ? "" : "shadow-2xl shadow-black/10 ring-1 ring-black/[0.04]"
       }`}
     >
@@ -292,6 +292,14 @@ export default function ProductShot({
           {overlay}
         </div>
       </div>
+
+      {/* On small screens the window has a fixed, app-like height and the note
+          clips at the bottom edge — fade it out so the cut reads as a window,
+          not a truncated page. Desktop clips at the viewport instead. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 rounded-b-xl bg-gradient-to-t from-background to-transparent lg:hidden"
+      />
     </div>
   );
 }

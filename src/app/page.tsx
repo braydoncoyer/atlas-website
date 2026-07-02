@@ -54,13 +54,18 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Product shot — the full app window, contained within the content
-            width (no right-edge bleed). Flexes to fill the rest of the hero so
-            its lower half runs down to the bottom of the viewport. Cut-off
-            treatments are reserved for the body sections below. */}
+        {/* Product shot — the full app window. On phones it's oversized and
+            bleeds off the right edge of the screen (clipped by the page's
+            overflow-x-clip), so the window keeps Mac-app-like proportions
+            instead of squeezing into the content column. From `sm` up it's
+            contained within the content width and flexes to fill the rest of
+            the hero so its lower half runs down to the bottom of the
+            viewport. */}
         <div className="mt-10 flex-1 sm:mt-14">
           <div className="mx-auto h-full max-w-7xl px-6">
-            <ProductShot />
+            <div className="h-full w-[140%] max-w-none sm:w-full">
+              <ProductShot />
+            </div>
           </div>
         </div>
       </section>
