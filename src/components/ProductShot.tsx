@@ -295,10 +295,14 @@ export default function ProductShot({
 
       {/* On small screens the window has a fixed, app-like height and the note
           clips at the bottom edge — fade it out so the cut reads as a window,
-          not a truncated page. Desktop clips at the viewport instead. */}
+          not a truncated page. Desktop clips at the viewport instead.
+          A solid layer faded via mask (not a gradient to `transparent`): iOS
+          Safari interpolates gradient colors unpremultiplied, so fading to
+          transparent — which is transparent *black* — renders a gray band.
+          Masks only interpolate alpha, so no such banding. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 rounded-b-xl bg-gradient-to-t from-background to-transparent lg:hidden"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 rounded-b-xl bg-background [mask-image:linear-gradient(to_top,black,transparent)] lg:hidden"
       />
     </div>
   );
