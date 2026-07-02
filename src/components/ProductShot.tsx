@@ -218,7 +218,7 @@ export default function ProductShot({
 }) {
   return (
     <div
-      className={`flex h-full min-h-[560px] flex-col overflow-hidden rounded-xl border border-border bg-background ${
+      className={`relative flex h-[26rem] flex-col overflow-hidden rounded-xl border border-border bg-background sm:h-[30rem] lg:h-full lg:min-h-[560px] ${
         flat ? "" : "shadow-2xl shadow-black/10 ring-1 ring-black/[0.04]"
       }`}
     >
@@ -292,6 +292,18 @@ export default function ProductShot({
           {overlay}
         </div>
       </div>
+
+      {/* On small screens the window has a fixed, app-like height and the note
+          clips at the bottom edge — fade it out so the cut reads as a window,
+          not a truncated page. Desktop clips at the viewport instead.
+          A solid layer faded via mask (not a gradient to `transparent`): iOS
+          Safari interpolates gradient colors unpremultiplied, so fading to
+          transparent — which is transparent *black* — renders a gray band.
+          Masks only interpolate alpha, so no such banding. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 rounded-b-xl bg-background [mask-image:linear-gradient(to_top,black,transparent)] lg:hidden"
+      />
     </div>
   );
 }

@@ -86,6 +86,18 @@ async function processSignup(formData: FormData): Promise<SignupState> {
         message: "Something went wrong. Please try again.",
       };
     }
+
+    // Fire the "waitlist" event for the new contact (triggers any Resend
+    // automations tied to it, e.g. a confirmation email). Only on fresh
+    // signups — re-submitting shouldn't re-trigger automations. A failure
+    // here isn't fatal: the contact is already on the list.
+    const { error: eventError } = await resend.events.send({
+      event: "waitlist",
+      email,
+    });
+    if (eventError) {
+      console.error("Resend events.send failed:", eventError.message);
+    }
   } catch (err) {
     console.error("Resend request threw:", err);
     return {
