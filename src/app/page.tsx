@@ -15,14 +15,20 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-[100dvh] flex-col overflow-x-clip bg-gradient-to-b from-white via-white to-sky-50/70">
-      <section className="relative flex flex-1 flex-col">
-        {/* AI glow — blue, per Atlas brand (purple/pink rejected) */}
+      <section className="relative isolate flex min-h-[100dvh] flex-col">
+        {/* AI glow — blue, per Atlas brand (purple/pink rejected). Kept in the
+            hero band (above the opaque product-shot window, which would
+            otherwise paint over it) so the color actually reads. */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 -z-10"
         >
-          <div className="absolute left-1/2 top-[40%] h-[420px] w-[120%] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(0,136,255,0.18),rgba(0,136,255,0.06)_45%,transparent_70%)] blur-2xl" />
-          <div className="absolute right-[8%] top-[18%] h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(64,196,255,0.20),transparent_70%)] blur-3xl" />
+          {/* Primary wash, haloing behind the headline + subhead. */}
+          <div className="absolute left-1/2 top-[16%] h-[460px] w-[115%] -translate-x-1/2 rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(0,136,255,0.19),rgba(0,136,255,0.08)_45%,transparent_70%)] blur-2xl" />
+          {/* Cooler accent over the form/CTA, top-right. */}
+          <div className="absolute right-[6%] top-[10%] h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(64,196,255,0.25),transparent_70%)] blur-3xl" />
+          {/* Faint counter-glow on the left so the wash isn't lopsided. */}
+          <div className="absolute left-[2%] top-[24%] h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(0,136,255,0.11),transparent_70%)] blur-3xl" />
         </div>
 
         {/* Hero */}
@@ -48,16 +54,13 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Product shot — left-aligned to the headline, bleeds off the right
-            edge and clips at the fold. The large-screen width is viewport-based
-            (anchored to the content's left edge) so it overruns the right edge
-            on any monitor size instead of stopping short. min-h keeps it visible
-            on short/landscape viewports, where the page scrolls instead. */}
-        <div className="mt-8 flex-1 overflow-hidden min-h-[22rem] sm:mt-12">
+        {/* Product shot — the full app window, contained within the content
+            width (no right-edge bleed). Flexes to fill the rest of the hero so
+            its lower half runs down to the bottom of the viewport. Cut-off
+            treatments are reserved for the body sections below. */}
+        <div className="mt-10 flex-1 sm:mt-14">
           <div className="mx-auto h-full max-w-7xl px-6">
-            <div className="h-[calc(100%+3rem)] w-[120%] max-w-none lg:w-[calc(50vw+744px)]">
-              <ProductShot />
-            </div>
+            <ProductShot />
           </div>
         </div>
       </section>

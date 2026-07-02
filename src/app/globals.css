@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 :root {
+  /* Light-first by brand. Opt out of OS dark mode entirely so native controls
+   * (email input, scrollbars) render light and the page stays the designed
+   * light theme everywhere. */
+  color-scheme: light;
   --background: #ffffff;
   --foreground: #18181b;
   --muted: #6b7280;
@@ -23,19 +27,6 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-instrument-serif);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b0b0d;
-    --foreground: #f4f4f5;
-    --muted: #9ca3af;
-    --subtle: #18181b;
-    --border: #27272a;
-    --accent: #2a9bff;
-    --accent-hover: #4dabff;
-    --accent-soft: rgba(42, 155, 255, 0.12);
-  }
 }
 
 /* In @layer base so `border-<color>` utilities still override this default
