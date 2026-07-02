@@ -63,12 +63,8 @@ function SocialProof({ count }: { count: number }) {
 
 export default function WaitlistDialog({
   waitlist,
-  align = "default",
 }: {
   waitlist: { count: number; hasMore: boolean } | null;
-  // "default" left-aligns and right-aligns on lg (hero); "center" stacks
-  // everything centered (final CTA).
-  align?: "default" | "center";
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   // Bumped on each open so the flow remounts and resets to the form view.
@@ -116,13 +112,7 @@ export default function WaitlistDialog({
   const showProof = waitlist && count >= MIN_VISIBLE_COUNT;
 
   return (
-    <div
-      className={
-        align === "center"
-          ? "flex flex-col items-center gap-3"
-          : "flex flex-col items-start gap-3 lg:items-end"
-      }
-    >
+    <div className="flex flex-col items-start gap-3 lg:items-end">
       <button
         type="button"
         onClick={open}
