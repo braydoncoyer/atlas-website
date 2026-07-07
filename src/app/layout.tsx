@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { VemetricScript } from "@vemetric/react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -47,7 +48,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {process.env.NEXT_PUBLIC_VEMETRIC_TOKEN && (
+          <VemetricScript token={process.env.NEXT_PUBLIC_VEMETRIC_TOKEN} />
+        )}
+        {children}
+      </body>
     </html>
   );
 }
