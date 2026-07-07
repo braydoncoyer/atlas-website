@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useSyncExternalStore } from "react";
+import { vemetric } from "@vemetric/react";
 import WaitlistForm from "./WaitlistForm";
 import RollingNumber from "./RollingNumber";
 
@@ -95,6 +96,7 @@ export default function WaitlistDialog({
   };
 
   const open = () => {
+    vemetric.trackEvent("WaitlistCtaClicked");
     setInstance((i) => i + 1);
     dialogRef.current?.showModal();
   };
