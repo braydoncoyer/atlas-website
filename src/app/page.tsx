@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ProductShot from "@/components/ProductShot";
 import WaitlistDialog from "@/components/WaitlistDialog";
 import { getWaitlistCount } from "@/lib/waitlist";
@@ -69,6 +70,18 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer — kept quiet so it doesn't compete with the hero. Holds the
+          legal link the App Store / privacy requirements need. */}
+      <footer className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-slate-400 sm:flex-row">
+        <span>© {new Date().getFullYear()} Atlas</span>
+        <Link
+          href="/terms"
+          className="font-medium text-slate-500 transition-colors hover:text-accent"
+        >
+          Terms &amp; Privacy
+        </Link>
+      </footer>
     </main>
   );
 }
