@@ -48,6 +48,8 @@ Server-only env vars in `.env.local` (gitignored; provide `.env.example` with em
 
 - `RESEND_API_KEY` — Resend API key
 - `RESEND_AUDIENCE_ID` — target audience for signups
+- `WAITLIST_NOTIFY_TO` — where to send new-signup notification emails (optional; empty disables them)
+- `WAITLIST_NOTIFY_FROM` — sender for those notifications, on a Resend-verified domain (optional; defaults to `onboarding@resend.dev`)
 
 Never log, echo, or commit keys. Never expose them to the client (no `NEXT_PUBLIC_` prefix for these).
 

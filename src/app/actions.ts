@@ -98,6 +98,27 @@ async function processSignup(formData: FormData): Promise<SignupState> {
     if (eventError) {
       console.error("Resend events.send failed:", eventError.message);
     }
+
+    // Notify the team about the fresh signup. Same rules as the event above:
+    // only on new contacts, and a failure isn't fatal — the signup already
+    // succeeded, so we only lose the heads-up email.
+    const notifyTo = process.env.WAITLIST_NOTIFY_TO;
+    if (notifyTo) {
+      const { error: notifyError } = await resend.emails.send({
+        from:
+          process.env.WAITLIST_NOTIFY_FROM ??
+          "Atlas Waitlist <onboarding@resend.dev>",
+        to: notifyTo,
+        subject: "New Atlas waitlist signup",
+        text: `${email} just joined the Atlas waitlist.`,
+      });
+      if (notifyError) {
+        console.error(
+          "Resend signup notification failed:",
+          notifyError.message,
+        );
+      }
+    }
   } catch (err) {
     console.error("Resend request threw:", err);
     return {
