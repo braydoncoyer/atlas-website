@@ -10,9 +10,12 @@
   --muted: #6b7280;
   --subtle: #f4f4f5;
   --border: #e4e4e7;
-  --accent: #0088ff;
-  --accent-hover: #0073d8;
-  --accent-soft: rgba(0, 136, 255, 0.08);
+  /* Accent = stone (neutral charcoal): button, links, focus, wordmark. The
+   * UI stays intentionally neutral — all the color comes from the hero
+   * gradient glows (pink + blue). */
+  --accent: oklch(26.8% 0.007 34.298); /* stone-800 */
+  --accent-hover: oklch(21.6% 0.006 56.043); /* stone-900 */
+  --accent-soft: oklch(26.8% 0.007 34.298 / 0.08);
 }
 
 @theme inline {
@@ -26,7 +29,8 @@
   --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument-serif);
+  --font-serif: var(--font-playfair);
+  --font-hand: var(--font-caveat);
 }
 
 /* In @layer base so `border-<color>` utilities still override this default
@@ -38,11 +42,140 @@
 }
 
 body {
-  background: var(--background);
+  /* Page canvas is stone-50; component surfaces (cards, inputs, modal, the
+   * product-shot window) stay white via --background so they lift off it. */
+  background: oklch(98.5% 0.001 106.423); /* stone-50 */
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/*
+ * The Lore window mock's editor (ProductShot). The real app sets body copy in
+ * a native serif (New York), so the mock does too — this is deliberately NOT
+ * Playfair, which is the site's display face, not the app's editor face.
+ */
+.lore-serif,
+.lore-editor {
+  font-family: ui-serif, "New York", Georgia, "Times New Roman", serif;
+}
+
+.lore-editor {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #37342f;
+  caret-color: #37342f;
+  /* Empty notes (a fresh daily note) still need a click target. */
+  min-height: 12rem;
+}
+
+.lore-editor:focus {
+  outline: none;
+}
+
+.lore-editor:empty::before {
+  content: attr(data-placeholder);
+  color: #a8a29e;
+  pointer-events: none;
+}
+
+/* Editable note title (new notes only) — same serif face as locked titles. */
+.lore-title:focus {
+  outline: none;
+}
+
+.lore-title:empty::before {
+  content: attr(data-placeholder);
+  color: #a8a29e;
+  pointer-events: none;
+}
+
+.lore-editor p {
+  margin: 0 0 0.9em;
+}
+
+.lore-editor h1,
+.lore-editor h2,
+.lore-editor h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #211f1c;
+}
+
+.lore-editor h1 {
+  font-size: 1.5em;
+  margin: 1.1em 0 0.45em;
+}
+
+.lore-editor h2 {
+  font-size: 1.3em;
+  margin: 1em 0 0.4em;
+}
+
+.lore-editor h3 {
+  font-size: 1.12em;
+  margin: 0.9em 0 0.35em;
+}
+
+.lore-editor h1:first-child,
+.lore-editor h2:first-child,
+.lore-editor h3:first-child {
+  margin-top: 0;
+}
+
+/* `>` callout — a soft warm block, like the app's callouts. */
+.lore-editor blockquote {
+  margin: 0 0 0.9em;
+  padding: 0.55em 0.85em;
+  background: rgba(164, 148, 110, 0.1);
+  border-left: 3px solid rgba(164, 148, 110, 0.45);
+  border-radius: 6px;
+}
+
+.lore-editor blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.lore-editor ul,
+.lore-editor ol {
+  margin: 0 0 0.9em;
+  padding-left: 1.35em;
+}
+
+.lore-editor ul {
+  list-style: disc;
+}
+
+.lore-editor ol {
+  list-style: decimal;
+}
+
+.lore-editor b,
+.lore-editor strong {
+  font-weight: 700;
+}
+
+.lore-editor mark {
+  background: #fdeb8f;
+  border-radius: 2px;
+  padding: 1px 2px;
+  color: inherit;
+}
+
+.lore-editor a {
+  color: #2f6fed;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.lore-editor code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  padding: 1px 5px;
 }
 
 /*
@@ -183,6 +316,25 @@ body {
 
 .success-sub {
   animation: rise-in 320ms ease-out 260ms both;
+}
+
+/*
+ * Rebrand banner ("Atlas is now Lore Notes") — mounts only for visitors
+ * redirected from a legacy domain, so it eases in rather than popping.
+ */
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.banner-enter {
+  animation: banner-in 280ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /*

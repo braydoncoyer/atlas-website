@@ -57,11 +57,11 @@ function FormView({
 }) {
   return (
     <div>
-      <h2 className="text-xl font-semibold tracking-tight text-sky-950">
+      <h2 className="font-serif text-xl font-semibold text-stone-700">
         Join the waitlist
       </h2>
       <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
-        Be the first to write in Atlas. We&apos;ll email you the moment
+        Be the first to write in Lore. We&apos;ll email you the moment
         it&apos;s ready.
       </p>
 
@@ -77,7 +77,7 @@ function FormView({
           autoComplete="email"
           placeholder="you@example.com"
           aria-invalid={state.status === "error"}
-          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors duration-150 ease-out placeholder:text-muted focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors duration-150 ease-out placeholder:text-muted focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-[invalid=true]:border-red-400"
         />
         {/* Honeypot — hidden from humans, catches bots. */}
         <input
@@ -91,11 +91,13 @@ function FormView({
         <SubmitButton />
         <p
           role={state.status === "error" ? "alert" : undefined}
-          className="min-h-5 text-center text-xs text-muted"
+          className={`min-h-5 text-center text-xs ${
+            state.status === "error" ? "font-medium text-red-600" : "text-muted"
+          }`}
         >
           {state.status === "error"
             ? state.message
-            : "No spam — one email when Atlas is ready."}
+            : "No spam — one email when Lore is ready."}
         </p>
       </form>
     </div>
@@ -132,7 +134,7 @@ function SuccessView({ returning }: { returning?: boolean }) {
           {returning ? "You're already on the list" : "You're on the list"}
         </p>
         <p className="success-sub mt-1 text-sm text-muted">
-          We&apos;ll email you when Atlas is ready.
+          We&apos;ll email you when Lore is ready.
         </p>
       </div>
     </div>
