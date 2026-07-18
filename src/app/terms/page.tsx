@@ -34,7 +34,7 @@ function Section({
       >
         {title}
       </h2>
-      <div className="mt-4 space-y-4 text-[0.975rem] leading-relaxed text-slate-600">
+      <div className="mt-4 space-y-4 text-[0.975rem] leading-relaxed text-stone-600">
         {children}
       </div>
     </section>
@@ -62,7 +62,7 @@ export default function TermsPage() {
         {/* Back to home / wordmark */}
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-accent"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-500 transition-colors hover:text-accent"
         >
           <svg
             aria-hidden="true"
@@ -84,7 +84,7 @@ export default function TermsPage() {
           <h1 className="font-serif text-balance text-3xl font-semibold text-stone-700 sm:text-4xl">
             Terms &amp; Privacy
           </h1>
-          <p className="mt-3 text-sm text-slate-500">
+          <p className="mt-3 text-sm text-stone-500">
             {VERSION} · Effective {EFFECTIVE_DATE}
           </p>
         </header>
@@ -113,7 +113,7 @@ export default function TermsPage() {
               builds on top of them — the search index, embeddings, and caches —
               is rebuildable from the files alone.
             </p>
-            <ul className="list-disc space-y-2 pl-5 marker:text-slate-300">
+            <ul className="list-disc space-y-2 pl-5 marker:text-stone-300">
               <li>
                 Writing, navigation, links, backlinks, and keyword search work
                 fully offline and never touch the network.
@@ -153,15 +153,15 @@ export default function TermsPage() {
               is a deliberate quality-over-local-only trade, and here&rsquo;s
               exactly what happens:
             </p>
-            <ul className="list-disc space-y-2 pl-5 marker:text-slate-300">
+            <ul className="list-disc space-y-2 pl-5 marker:text-stone-300">
               <li>
-                <span className="font-medium text-slate-700">Voyage AI</span>{" "}
+                <span className="font-medium text-stone-700">Voyage AI</span>{" "}
                 receives note text to build the semantic index that powers
                 search, discovered connections, and trails (embeddings +
                 reranking).
               </li>
               <li>
-                <span className="font-medium text-slate-700">OpenAI</span>{" "}
+                <span className="font-medium text-stone-700">OpenAI</span>{" "}
                 receives the relevant excerpts when you ask a question, so it can
                 write the answer, connection explanations, and trail narratives.
               </li>
@@ -186,7 +186,7 @@ export default function TermsPage() {
               authoritative, so please review them.
             </p>
             <p>
-              <span className="font-medium text-slate-700">
+              <span className="font-medium text-stone-700">
                 OpenAI (answers &amp; explanations).
               </span>{" "}
               OpenAI states that data submitted through its API is not used to
@@ -203,10 +203,10 @@ export default function TermsPage() {
               .
             </p>
             <p>
-              <span className="font-medium text-slate-700">
+              <span className="font-medium text-stone-700">
                 Voyage AI (search index &amp; connections).
               </span>{" "}
-              <span className="font-medium text-slate-700">Important:</span> by
+              <span className="font-medium text-stone-700">Important:</span> by
               default Voyage may use the content you submit to train and improve
               its models — this is opt-out, not opt-in. You retain ownership of
               your content, and Voyage says it won&rsquo;t share it with third
@@ -220,7 +220,7 @@ export default function TermsPage() {
           </Section>
 
           <Section id="keys-privacy" title="Your keys and your privacy">
-            <ul className="list-disc space-y-2 pl-5 marker:text-slate-300">
+            <ul className="list-disc space-y-2 pl-5 marker:text-stone-300">
               <li>
                 API keys are stored only in the system Keychain — never in your
                 notes, never in plain files, and never sent anywhere except to
@@ -309,10 +309,10 @@ export default function TermsPage() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-16 border-t border-border pt-8 text-sm text-slate-400">
+        <footer className="mt-16 border-t border-border pt-8 text-sm text-stone-400">
           <Link
             href="/"
-            className="font-medium text-slate-500 transition-colors hover:text-accent"
+            className="font-medium text-stone-400 transition-colors hover:text-accent"
           >
             ← Back to Lore
           </Link>

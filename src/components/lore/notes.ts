@@ -151,12 +151,15 @@ export const NOTES: LoreNote[] = [
 // links into the notes that belong to it. Generic areas so any note-taker /
 // PKM visitor sees themselves in the sidebar.
 function regionNote(name: string, links: string[]): LoreNote {
+  const tag = name.toLowerCase();
   return {
-    id: `region-${name.toLowerCase()}`,
+    id: `region-${tag}`,
     title: name,
     badge: "green",
     isRegion: true,
-    seedHtml: `<ul>${links.map((l) => `<li><a>${l}</a></li>`).join("")}</ul>`,
+    seedHtml:
+      `<p>A region collects an area of thinking. Any note you tag <code>#${tag}</code> joins the list below on its own — no filing, no upkeep.</p>` +
+      `<ul>${links.map((l) => `<li><a>${l}</a></li>`).join("")}</ul>`,
   };
 }
 

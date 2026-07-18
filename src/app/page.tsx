@@ -109,11 +109,11 @@ export default async function Home() {
 
       {/* Footer — kept quiet so it doesn't compete with the hero. Holds the
           legal link the App Store / privacy requirements need. */}
-      <footer className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-slate-400 sm:flex-row">
+      <footer className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-stone-400 sm:flex-row">
         <span>© {new Date().getFullYear()} Lore Notes</span>
         <Link
           href="/terms"
-          className="font-medium text-slate-500 transition-colors hover:text-accent"
+          className="font-medium text-stone-400 transition-colors hover:text-accent"
         >
           Terms &amp; Privacy
         </Link>
