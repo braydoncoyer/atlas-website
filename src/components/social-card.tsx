@@ -1,16 +1,21 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 // Shared social-share card used by both the Open Graph and Twitter/X metadata
-// routes: the Atlas editor mock on the right, "Join the waitlist" on the left.
+// routes: the Lore editor mock on the right, "Join the waitlist" on the left.
 // Rendered with next/og (Satori) — flexbox + inline styles only, so this is a
 // hand-built, simplified twin of <ProductShot/>.
 
-export const alt = "Atlas — Join the waitlist";
+export const alt = "Lore Notes — Join the waitlist";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const NAVY = "#082f49";
-const ACCENT = "#0088ff";
+// Hex/rgb only — Satori (next/og) doesn't parse oklch. These mirror the
+// Mirrors the site tokens: HEADING = stone-800, ACCENT = stone-800 (neutral;
+// color comes from the glow).
+const HEADING = "#292524";
+const ACCENT = "#292524";
 const BORDER = "#e4e4e7";
 const SIDEBAR_BG = "#f7f7f8";
 
@@ -61,7 +66,23 @@ function EditorParagraph({ children }: { children: string }) {
   );
 }
 
-export function renderSocialImage() {
+export async function renderSocialImage() {
+  // Satori can't fetch relative URLs, so inline the icon as a data URI.
+  const icon = await readFile(join(process.cwd(), "public/lore-icon.png"));
+  const iconSrc = `data:image/png;base64,${icon.toString("base64")}`;
+
+  // Satori ships no fonts and uses ONLY what we pass (any unlisted family
+  // falls back to the first font given). So bundle both faces as raw TTF
+  // (Satori can't read next/font or woff2): Geist for the body/UI text and
+  // Playfair for the heading — mirroring the site.
+  const fontDir = join(process.cwd(), "src/app/fonts");
+  const [geist400, geist700, playfair600, playfair800] = await Promise.all([
+    readFile(join(fontDir, "Geist-400.ttf")),
+    readFile(join(fontDir, "Geist-700.ttf")),
+    readFile(join(fontDir, "PlayfairDisplay-SemiBold.ttf")),
+    readFile(join(fontDir, "PlayfairDisplay-ExtraBold.ttf")),
+  ]);
+
   return new ImageResponse(
     (
       <div
@@ -71,17 +92,17 @@ export function renderSocialImage() {
           display: "flex",
           backgroundColor: "#ffffff",
           position: "relative",
-          fontFamily: "sans-serif",
+          fontFamily: "Geist",
         }}
       >
-        {/* blue brand glow */}
+        {/* blue/pink brand glow */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             display: "flex",
             backgroundImage:
-              "radial-gradient(55% 55% at 72% 32%, rgba(0,136,255,0.16), rgba(0,136,255,0) 70%)",
+              "radial-gradient(48% 58% at 80% 30%, rgba(80,135,245,0.33), rgba(80,135,245,0) 70%), radial-gradient(45% 55% at 16% 68%, rgba(216,105,170,0.29), rgba(216,105,170,0) 70%)",
           }}
         />
 
@@ -100,22 +121,34 @@ export function renderSocialImage() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 10,
+              gap: 12,
+              fontFamily: "Playfair Display",
               fontSize: 30,
-              fontWeight: 700,
+              fontWeight: 800,
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
               color: ACCENT,
             }}
           >
-            Atlas
+            {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img */}
+            <img
+              src={iconSrc}
+              alt=""
+              width={44}
+              height={44}
+              style={{ borderRadius: 10 }}
+            />
+            Lore
           </div>
           <div
             style={{
               display: "flex",
-              fontSize: 60,
-              fontWeight: 700,
+              fontFamily: "Playfair Display",
+              fontSize: 62,
+              fontWeight: 600,
               lineHeight: 1.05,
-              letterSpacing: "-0.025em",
-              color: NAVY,
+              letterSpacing: "-0.01em",
+              color: HEADING,
             }}
           >
             Join the waitlist
@@ -130,7 +163,7 @@ export function renderSocialImage() {
             }}
           >
             A writing-first, local-first notes app for Mac, iPad, and iPhone. Be
-            the first to write in Atlas.
+            the first to write in Lore.
           </div>
         </div>
 
@@ -215,7 +248,7 @@ export function renderSocialImage() {
                   fontSize: 15,
                   fontWeight: 600,
                   color: ACCENT,
-                  backgroundColor: "rgba(0,136,255,0.10)",
+                  backgroundColor: "rgba(41,37,36,0.08)",
                   borderRadius: 7,
                 }}
               >
@@ -245,20 +278,38 @@ export function renderSocialImage() {
                 Start Here
               </div>
               <div style={{ display: "flex", height: 1, backgroundColor: BORDER }} />
-              <EditorParagraph>Welcome to Atlas.</EditorParagraph>
+              <EditorParagraph>Welcome to Lore.</EditorParagraph>
               <EditorParagraph>
-                Atlas is built around a simple idea: your notes should belong to
+                Lore is built around a simple idea: your notes should belong to
                 you, and they should become more valuable the more you write.
               </EditorParagraph>
               <EditorParagraph>
                 Everything starts with writing. Capture ideas, connect concepts,
-                and let Atlas help you rediscover them later.
+                and let Lore help you rediscover them later.
               </EditorParagraph>
             </div>
           </div>
         </div>
       </div>
     ),
-    { ...size },
+    {
+      ...size,
+      fonts: [
+        { name: "Geist", data: geist400, weight: 400, style: "normal" },
+        { name: "Geist", data: geist700, weight: 700, style: "normal" },
+        {
+          name: "Playfair Display",
+          data: playfair600,
+          weight: 600,
+          style: "normal",
+        },
+        {
+          name: "Playfair Display",
+          data: playfair800,
+          weight: 800,
+          style: "normal",
+        },
+      ],
+    },
   );
 }
