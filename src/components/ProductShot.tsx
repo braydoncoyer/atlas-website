@@ -304,15 +304,6 @@ export default function ProductShot() {
             ) : null}
           </div>
 
-          {/* Soft glow pooling at the bottom of the editor, like the app's
-              ambient accent light. Purely decorative. */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-40 overflow-hidden lg:block"
-          >
-            <div className="absolute left-1/2 top-10 h-36 w-[26rem] -translate-x-[70%] rounded-full bg-[radial-gradient(circle,rgba(96,140,245,0.30),transparent_70%)] blur-2xl" />
-            <div className="absolute left-1/2 top-14 h-32 w-[22rem] -translate-x-[15%] rounded-full bg-[radial-gradient(circle,rgba(226,120,190,0.24),transparent_70%)] blur-2xl" />
-          </div>
         </div>
       </div>
 
