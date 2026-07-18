@@ -60,7 +60,7 @@ function FormView({
       <h2 className="font-serif text-xl font-semibold text-stone-700">
         Join the waitlist
       </h2>
-      <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
+      <p className="mt-1.5 text-sm leading-relaxed text-stone-500">
         Be the first to write in Lore. We&apos;ll email you the moment
         it&apos;s ready.
       </p>
