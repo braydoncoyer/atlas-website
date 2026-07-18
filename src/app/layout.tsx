@@ -30,6 +30,9 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  // Canonical production origin — OG/Twitter image URLs resolve against
+  // this instead of the deployment URL (or localhost in dev builds).
+  metadataBase: new URL("https://www.lorenotes.com"),
   title: "Lore Notes — Remember more of what you already know.",
   description:
     "Lore is a local-first notes app designed around writing. Every note is a plain Markdown file you own, while Lore quietly surfaces related ideas and forgotten connections as you write. Join the waitlist.",
