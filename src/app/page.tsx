@@ -113,7 +113,7 @@ export default async function Home() {
         <span>© {new Date().getFullYear()} Lore Notes</span>
         <Link
           href="/terms"
-          className="font-medium text-stone-500 transition-colors hover:text-accent"
+          className="font-medium text-stone-400 transition-colors hover:text-accent"
         >
           Terms &amp; Privacy
         </Link>

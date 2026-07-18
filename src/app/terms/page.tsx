@@ -312,7 +312,7 @@ export default function TermsPage() {
         <footer className="mt-16 border-t border-border pt-8 text-sm text-stone-400">
           <Link
             href="/"
-            className="font-medium text-stone-500 transition-colors hover:text-accent"
+            className="font-medium text-stone-400 transition-colors hover:text-accent"
           >
             ← Back to Lore
           </Link>
