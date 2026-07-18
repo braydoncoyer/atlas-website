@@ -107,10 +107,10 @@ async function processSignup(formData: FormData): Promise<SignupState> {
       const { error: notifyError } = await resend.emails.send({
         from:
           process.env.WAITLIST_NOTIFY_FROM ??
-          "Atlas Waitlist <onboarding@resend.dev>",
+          "Lore Waitlist <onboarding@resend.dev>",
         to: notifyTo,
-        subject: "New Atlas waitlist signup",
-        text: `${email} just joined the Atlas waitlist.`,
+        subject: "New Lore Notes waitlist signup",
+        text: `${email} just joined the Lore waitlist.`,
       });
       if (notifyError) {
         console.error(

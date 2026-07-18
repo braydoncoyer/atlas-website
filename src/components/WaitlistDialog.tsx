@@ -9,7 +9,9 @@ import RollingNumber from "./RollingNumber";
 const MIN_VISIBLE_COUNT = 1;
 
 // Remembers across visits that this browser already joined.
-const JOINED_KEY = "atlas-waitlist-joined";
+const JOINED_KEY = "lore-waitlist-joined";
+// Signups from before the Atlas → Lore rebrand still count as joined.
+const LEGACY_JOINED_KEY = "atlas-waitlist-joined";
 
 // Read the persisted flag via useSyncExternalStore so there's no hydration
 // mismatch (server snapshot is always false) and no setState-in-effect.
@@ -20,22 +22,26 @@ function subscribeJoined(callback: () => void) {
 }
 function getJoinedSnapshot() {
   try {
-    return localStorage.getItem(JOINED_KEY) === "1";
+    return (
+      localStorage.getItem(JOINED_KEY) === "1" ||
+      localStorage.getItem(LEGACY_JOINED_KEY) === "1"
+    );
   } catch {
     return false;
   }
 }
 
-// Subtle on-brand blue/cyan variations so the avatars read as distinct people
-// without straying from the accent palette.
+// Variations drawn from the hero's ambient glow (blue #5087f5, violet
+// #9678dc, pink #d869aa) so the avatars read as distinct people while
+// echoing the wash behind the app window.
 const AVATAR_GRADIENTS = [
-  "from-[#0088ff] to-[#5fb8ff]",
-  "from-[#0a72d6] to-[#49a6ff]",
-  "from-[#2a9bff] to-[#7cc4ff]",
-  "from-[#0098e0] to-[#5ccaf0]",
-  "from-[#1f7ae0] to-[#66b0ff]",
-  "from-[#0b86f2] to-[#54aef7]",
-  "from-[#3aa0ff] to-[#86c9ff]",
+  "from-[#5087f5] to-[#8ba7f0]",
+  "from-[#9678dc] to-[#b79fe8]",
+  "from-[#d869aa] to-[#e795c5]",
+  "from-[#7d8ef0] to-[#a88ee2]",
+  "from-[#c473c0] to-[#d98cb8]",
+  "from-[#6f9bf7] to-[#9678dc]",
+  "from-[#d869aa] to-[#9678dc]",
 ];
 
 function SocialProof({ count }: { count: number }) {
@@ -118,9 +124,9 @@ export default function WaitlistDialog({
       <button
         type="button"
         onClick={open}
-        className="w-fit rounded-full bg-gradient-to-b from-[#1a93ff] to-accent px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent/25 transition-[filter,transform] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        className="w-fit rounded-full bg-gradient-to-b from-stone-600 to-accent px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent/25 transition-[filter,transform] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
-        Be first to try Atlas
+        Be first to try Lore
       </button>
 
       {showProof && <SocialProof count={count} />}

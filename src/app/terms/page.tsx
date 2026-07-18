@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Privacy — Atlas",
+  title: "Terms & Privacy — Lore Notes",
   description:
-    "How Atlas handles your writing, what the optional AI features send to third-party services, and the usual legal points — kept as plain as we can.",
+    "How Lore handles your writing, what the optional AI features send to third-party services, and the usual legal points — kept as plain as we can.",
   openGraph: {
-    title: "Terms & Privacy — Atlas",
+    title: "Terms & Privacy — Lore Notes",
     description:
-      "How Atlas handles your writing, what the optional AI features send to third-party services, and the usual legal points — kept as plain as we can.",
+      "How Lore handles your writing, what the optional AI features send to third-party services, and the usual legal points — kept as plain as we can.",
     type: "website",
   },
 };
@@ -30,7 +30,7 @@ function Section({
     <section aria-labelledby={id} className="scroll-mt-24">
       <h2
         id={id}
-        className="text-xl font-semibold tracking-tight text-sky-950 sm:text-2xl"
+        className="font-serif text-xl font-semibold text-stone-700 sm:text-2xl"
       >
         {title}
       </h2>
@@ -57,7 +57,7 @@ function A({ href, children }: { href: string; children: React.ReactNode }) {
 
 export default function TermsPage() {
   return (
-    <main className="bg-gradient-to-b from-white via-white to-sky-50/70">
+    <main className="bg-gradient-to-b from-stone-50 via-stone-50 to-stone-100/60">
       <div className="mx-auto w-full max-w-2xl px-6 pb-24 pt-12 sm:pt-16">
         {/* Back to home / wordmark */}
         <Link
@@ -76,12 +76,12 @@ export default function TermsPage() {
           >
             <path d="M10 12 6 8l4-4" />
           </svg>
-          Back to Atlas
+          Back to Lore
         </Link>
 
         {/* Title */}
         <header className="mt-10 border-b border-border pb-8">
-          <h1 className="text-balance text-3xl font-semibold tracking-tight text-sky-950 sm:text-4xl">
+          <h1 className="font-serif text-balance text-3xl font-semibold text-stone-700 sm:text-4xl">
             Terms &amp; Privacy
           </h1>
           <p className="mt-3 text-sm text-slate-500">
@@ -92,13 +92,14 @@ export default function TermsPage() {
         <div className="mt-10 space-y-12">
           <Section id="overview" title="Overview">
             <p>
-              Atlas is a writing-first notes app for Apple devices. Your notes
-              are plain Markdown files stored on your own disk — Atlas is the
+              Lore Notes (&ldquo;Lore&rdquo;) is a writing-first notes app for
+              Apple devices. Your notes are plain Markdown files stored on your
+              own disk — Lore is the
               editor and the intelligent layer over them, not the owner of your
               content.
             </p>
             <p>
-              By installing or using Atlas you agree to these terms. They cover
+              By installing or using Lore you agree to these terms. They cover
               how the app handles your writing, what the optional AI features
               send to third-party services, and the usual legal points every app
               needs. We&rsquo;ve kept them as plain as we can.
@@ -107,7 +108,7 @@ export default function TermsPage() {
 
           <Section id="your-notes" title="Your notes are yours">
             <p>
-              The Markdown file on disk is always the source of truth. Atlas
+              The Markdown file on disk is always the source of truth. Lore
               never locks your notes in a proprietary format, and everything it
               builds on top of them — the search index, embeddings, and caches —
               is rebuildable from the files alone.
@@ -119,7 +120,7 @@ export default function TermsPage() {
               </li>
               <li>
                 Your notes live in a folder you choose (local or iCloud Drive).
-                Atlas reads and writes those files; it doesn&rsquo;t upload them
+                Lore reads and writes those files; it doesn&rsquo;t upload them
                 anywhere on its own.
               </li>
               <li>
@@ -132,13 +133,13 @@ export default function TermsPage() {
 
           <Section id="ai-optional" title="AI features are optional and opt-in">
             <p>
-              Atlas is a complete writing app with no API keys at all. The AI
-              features — Ask Atlas, discovered connections, connection
+              Lore is a complete writing app with no API keys at all. The AI
+              features — Ask Lore, discovered connections, connection
               explanations, and trails — are the one exception, and they only
               run once you add your own API keys in Settings.
             </p>
             <p>
-              Atlas uses a bring-your-own-key model: you create accounts with the
+              Lore uses a bring-your-own-key model: you create accounts with the
               AI providers below and pay them directly for usage. With no keys
               set, nothing leaves your machine — the AI surfaces simply stay dark
               and the rest of the app works exactly the same.
@@ -147,7 +148,7 @@ export default function TermsPage() {
 
           <Section id="what-gets-sent" title="What gets sent to the cloud, and when">
             <p>
-              When you&rsquo;ve enabled the AI features, Atlas sends note content
+              When you&rsquo;ve enabled the AI features, Lore sends note content
               to two services to make retrieval and answers genuinely good. This
               is a deliberate quality-over-local-only trade, and here&rsquo;s
               exactly what happens:
@@ -166,7 +167,7 @@ export default function TermsPage() {
               </li>
             </ul>
             <p>
-              Atlas is frugal with what it sends: a note is only re-sent when its
+              Lore is frugal with what it sends: a note is only re-sent when its
               content actually changes. Renaming a file, reopening it, or syncing
               it never re-uploads anything. If a feature needs the cloud it says
               so, and removing your keys turns all of it back off.
@@ -226,15 +227,15 @@ export default function TermsPage() {
                 the provider they belong to.
               </li>
               <li>
-                Atlas does not run its own servers, accounts, or analytics that
-                collect your notes. There is no Atlas cloud between you and the AI
+                Lore does not run its own servers, accounts, or analytics that
+                collect your notes. There is no Lore cloud between you and the AI
                 providers.
               </li>
               <li>We never log your note content or your API keys.</li>
               <li>
                 Sending note text to a cloud model is inherent to how good
                 retrieval works. If you&rsquo;d rather keep everything local,
-                simply don&rsquo;t add keys — Atlas stays a complete offline
+                simply don&rsquo;t add keys — Lore stays a complete offline
                 writing app.
               </li>
             </ul>
@@ -242,7 +243,7 @@ export default function TermsPage() {
 
           <Section id="license" title="License and acceptable use">
             <p>
-              Atlas is licensed to you for personal and professional use, not
+              Lore is licensed to you for personal and professional use, not
               sold. You agree to use it lawfully and not to reverse-engineer,
               resell, or redistribute the app except as permitted by law.
             </p>
@@ -258,7 +259,7 @@ export default function TermsPage() {
             title="Disclaimer and limitation of liability"
           >
             <p>
-              Atlas is provided &ldquo;as is,&rdquo; without warranties of any
+              Lore is provided &ldquo;as is,&rdquo; without warranties of any
               kind, whether express or implied, including fitness for a
               particular purpose. AI-generated answers, connections, and
               explanations can be incomplete or wrong — treat them as a starting
@@ -266,7 +267,7 @@ export default function TermsPage() {
               notes.
             </p>
             <p>
-              To the maximum extent permitted by law, Atlas and its developer are
+              To the maximum extent permitted by law, Lore and its developer are
               not liable for any indirect, incidental, or consequential damages,
               or for any loss of data, arising from your use of the app or of the
               third-party AI services.
@@ -275,10 +276,10 @@ export default function TermsPage() {
 
           <Section id="governing-law" title="Governing law">
             <p>
-              Atlas is made by an independent developer based in Texas, United
+              Lore is made by an independent developer based in Texas, United
               States. These terms are governed by the laws of the State of Texas,
               without regard to its conflict-of-laws rules, and any dispute
-              relating to these terms or to your use of Atlas will be subject to
+              relating to these terms or to your use of Lore will be subject to
               the exclusive jurisdiction of the state and federal courts located
               in Texas.
             </p>
@@ -286,9 +287,9 @@ export default function TermsPage() {
 
           <Section id="changes" title="Changes to these terms">
             <p>
-              We may update these terms as Atlas evolves. When we make a
+              We may update these terms as Lore evolves. When we make a
               substantive change we increment the version shown at the top of
-              this document and update the effective date, and Atlas marks the
+              this document and update the effective date, and Lore marks the
               terms as updated until you open them again. Continuing to use the
               app after a change means you accept the revised terms.
             </p>
@@ -296,8 +297,8 @@ export default function TermsPage() {
 
           <Section id="contact" title="Contact">
             <p>
-              Atlas is made by an independent developer. Questions about these
-              terms or how Atlas handles your data? Open an issue at{" "}
+              Lore is made by an independent developer. Questions about these
+              terms or how Lore handles your data? Open an issue at{" "}
               <A href="https://github.com/braydoncoyer/atlas-releases/issues">
                 github.com/braydoncoyer/atlas-releases
               </A>
@@ -313,7 +314,7 @@ export default function TermsPage() {
             href="/"
             className="font-medium text-slate-500 transition-colors hover:text-accent"
           >
-            ← Back to Atlas
+            ← Back to Lore
           </Link>
         </footer>
       </div>
